@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.exp.app.board.dao.BoardDao;
 import com.exp.app.board.model.BoardBase;
+import com.exp.app.common.model.Criteria;
 
 @Repository("boardDao")
 public class BoardDaoImpl implements BoardDao {
@@ -18,7 +19,7 @@ public class BoardDaoImpl implements BoardDao {
 	private final static String NS = "com.exp.app.board.dao.BoardDao.";
 
 	@Override
-	public List<BoardBase> selectBoardList() {
-		return sqlSession.selectList(NS + "selectBoardList");
+	public List<BoardBase> selectBoardList(Criteria cri) {
+		return sqlSession.selectList(NS + "selectBoardList", cri);
 	}
 }

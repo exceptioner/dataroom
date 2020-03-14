@@ -1,9 +1,7 @@
 package com.exp.app.board.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.exp.app.board.model.BoardBase;
 import com.exp.app.board.service.BoardService;
+import com.exp.app.common.model.Criteria;
+import com.exp.app.common.model.Pagination;
 
 @RequestMapping("/board")
 @Controller
@@ -26,12 +26,16 @@ public class BoardController {
 	BoardService service;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String selectBoardList(Locale locale, Model model) {
+	public String selectBoardList(Locale locale, Model model, Criteria cri) {
 		logger.info("selectBoardList in......");
-		List<BoardBase> list = service.selectBoardList();
-		logger.debug("list ::::::::::::::::::::::::: " + list.toString());
+		List<BoardBase> list = service.selectBoardList(cri);
+
+		Pagination page = new Pagination();
+		page.setCri(cri);
+		page.setTotalCount(list.size());
 
 		model.addAttribute("list", list);
+		model.addAttribute("pagination", page);
 		return "board/list";
 	}
 
