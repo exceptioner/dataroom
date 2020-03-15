@@ -9,5 +9,6 @@
 
   	<typeAliases>
         <typeAlias type="com.exp.app.board.model.BoardBase" alias="boardBase" />
+        <typeAlias type="com.exp.app.board.model.BoardSearch" alias="boardSearch" />
     </typeAliases>
 </configuration>

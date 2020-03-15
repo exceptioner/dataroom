@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.exp.app.board.model.BoardBase;
+import com.exp.app.board.model.BoardSearch;
 import com.exp.app.board.service.BoardService;
-import com.exp.app.common.model.Criteria;
 import com.exp.app.common.model.Pagination;
 
 @RequestMapping("/board")
@@ -26,13 +26,13 @@ public class BoardController {
 	BoardService service;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String selectBoardList(Locale locale, Model model, Criteria cri) {
+	public String selectBoardList(Locale locale, Model model, BoardSearch search) {
 		logger.info("selectBoardList in......");
-		List<BoardBase> list = service.selectBoardList(cri);
+		List<BoardBase> list = service.selectBoardList(search);
 
 		Pagination page = new Pagination();
-		page.setCri(cri);
-		page.setTotalCount(list.size());
+		page.setCri(search);
+		page.setTotalCount(service.countBoardList(search));
 
 		model.addAttribute("list", list);
 		model.addAttribute("pagination", page);

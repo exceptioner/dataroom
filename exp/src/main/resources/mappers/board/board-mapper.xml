@@ -3,9 +3,43 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.exp.app.board.dao.BoardDao">
+	<sql id="selectBoard">
+		WHERE DEL_YN != 'N'
+	</sql>
 
-<select id="selectBoardList" resultType="boardBase">
-	SELECT * FROM BLTN_BOARD
-</select>
+	<select id="selectBoardList" parameterType="boardSearch" resultType="boardBase">
+		SELECT RNUM
+			   ,BOARD_NO
+			   ,BOARD_NM
+			   ,BOARD_DESC
+			   ,BOARD_TYPE
+			   ,REGR
+			   ,REG_DATE
+			   ,MODR
+			   ,MOD_DATE
+			   ,DEL_YN
+		  FROM (
+				SELECT ROW_NUMBER() OVER(ORDER BY BOARD_NO DESC) AS RNUM
+					   ,BOARD_NO
+					   ,BOARD_NM
+					   ,BOARD_DESC
+					   ,BOARD_TYPE
+					   ,REGR
+					   ,REG_DATE
+					   ,MODR
+					   ,MOD_DATE
+					   ,DEL_YN
+				  FROM BOARD
+				  <include refid="selectBoard"></include>
+			   )
+		 WHERE RNUM BETWEEN 1 AND 10
+	  ORDER BY RNUM
+	</select>
+
+	<select id="countBoardList" parameterType="boardSearch" resultType="int">
+		SELECT COUNT(*) AS CNT
+          FROM BOARD
+		<include refid="selectBoard"></include>
+	</select>
 
 </mapper>

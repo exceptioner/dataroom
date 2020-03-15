@@ -54,19 +54,24 @@
 	</tbody>
 </table>
 <div>
-  <ul>
-    <c:if test="${pagination.prev}">
-    	<li><a href="list${pagination.makeQuery(pagination.startPage - 1)}">이전</a></li>
-    </c:if>
-
-    <c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-    	<li><a href="list${pagination.makeQuery(idx)}">${idx}</a></li>
-    </c:forEach>
-
-    <c:if test="${pagination.next && pagination.endPage > 0}">
-    	<li><a href="list${pagination.makeQuery(pagination.endPage + 1)}">다음</a></li>
-    </c:if>
-  </ul>
+	<ul class="pagination">
+	  <c:if test="${pagination.prev }">
+	  <li>
+	      <a href='<c:url value="/board/boardList${pagination.makeQueryPage(pagination.startPage-1) }"/>'><i class="fa fa-chevron-left"><</i></a>
+	  </li>
+	  </c:if>
+	  <c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" var="pageNum">
+	  <li>
+	      <a href='<c:url value="/board/boardList${pagination.makeQueryPage(pageNum) }"/>'>${pageNum }</a>
+	  </li>
+	  </c:forEach>
+	  <c:if test="${pagination.next && pagination.endPage >0 }">
+	  <li>
+	      <a href='<c:url value="/board/boardList${pagination.makeQueryPage(pagination.endPage+1) }"/>'><i class="fa fa-chevron-right">></i></a>
+	  </li>
+	  </c:if>
+	</ul>
 </div>
+
 </body>
 </html>

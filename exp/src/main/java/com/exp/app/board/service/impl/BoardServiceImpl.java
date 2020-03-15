@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.exp.app.board.dao.BoardDao;
 import com.exp.app.board.model.BoardBase;
+import com.exp.app.board.model.BoardSearch;
 import com.exp.app.board.service.BoardService;
-import com.exp.app.common.model.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -17,8 +17,13 @@ public class BoardServiceImpl implements BoardService {
 	BoardDao dao;
 
 	@Override
-	public List<BoardBase> selectBoardList(Criteria cri) {
-		return dao.selectBoardList(cri);
+	public List<BoardBase> selectBoardList(BoardSearch search) {
+		return dao.selectBoardList(search);
+	}
+
+	@Override
+	public int countBoardList(BoardSearch search) {
+		return dao.countBoardList(search);
 	}
 
 }

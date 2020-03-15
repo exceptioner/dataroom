@@ -1,5 +1,8 @@
 package com.exp.app.common.model;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Data;
 
 @Data
@@ -33,5 +36,22 @@ public class Pagination {
         prev = startPage == 1 ? false : true;
         next = endPage * cri.getPerPageNum() < totalCount ? true : false;
 
+    }
+
+    public String makeQueryPage(int page) {
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .queryParam("page", page)
+                .queryParam("perPageNum", cri.getPerPageNum())
+                .build();
+        return uri.toUriString();
+    }
+
+    public String makeQueryPage(int idx, int page) {
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .queryParam("idx", idx)
+                .queryParam("page", page)
+                .queryParam("perPageNum", cri.getPerPageNum())
+                .build();
+        return uri.toUriString();
     }
 }

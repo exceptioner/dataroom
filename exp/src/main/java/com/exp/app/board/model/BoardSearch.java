@@ -1,19 +1,14 @@
 package com.exp.app.board.model;
 
-import java.sql.Timestamp;
+import com.exp.app.common.model.Criteria;
 
 import lombok.Data;
 
 @Data
-public class BoardBase {
-	private int rnum;
+public class BoardSearch extends Criteria {
 	private int boardNo;
 	private String boardNm;
 	private String boardDesc;
 	private String boardType;
-	private String regr;
-	private Timestamp regDate;
-	private String modr;
-	private Timestamp modDate;
 	private String delYn;
 }
