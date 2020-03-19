@@ -5,7 +5,6 @@ import java.util.List;
 import com.exp.app.board.model.BoardBase;
 import com.exp.app.board.model.BoardSearch;
 
-
 public interface BoardDao {
 	public List<BoardBase> selectBoardList(BoardSearch search);
 

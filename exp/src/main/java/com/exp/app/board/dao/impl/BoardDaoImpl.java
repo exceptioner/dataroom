@@ -10,21 +10,22 @@ import com.exp.app.board.dao.BoardDao;
 import com.exp.app.board.model.BoardBase;
 import com.exp.app.board.model.BoardSearch;
 
-@Repository("boardDao")
+@Repository
 public class BoardDaoImpl implements BoardDao {
 
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession sql;
 
 	private final static String NS = "com.exp.app.board.dao.BoardDao.";
 
 	@Override
 	public List<BoardBase> selectBoardList(BoardSearch search) {
-		return sqlSession.selectList(NS + "selectBoardList", search);
+		return sql.selectList(NS + "selectBoardList", search);
 	}
 
 	@Override
 	public int countBoardList(BoardSearch search) {
-		return sqlSession.selectOne(NS + "countBoardList", search);
+		return sql.selectOne(NS + "countBoardList", search);
 	}
+
 }

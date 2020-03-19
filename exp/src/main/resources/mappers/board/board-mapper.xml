@@ -8,8 +8,7 @@
 	</sql>
 
 	<select id="selectBoardList" parameterType="boardSearch" resultType="boardBase">
-		SELECT RNUM
-			   ,BOARD_NO
+		SELECT BOARD_NO
 			   ,BOARD_NM
 			   ,BOARD_DESC
 			   ,BOARD_TYPE
@@ -18,22 +17,10 @@
 			   ,MODR
 			   ,MOD_DATE
 			   ,DEL_YN
-		  FROM (
-				SELECT ROW_NUMBER() OVER(ORDER BY BOARD_NO DESC) AS RNUM
-					   ,BOARD_NO
-					   ,BOARD_NM
-					   ,BOARD_DESC
-					   ,BOARD_TYPE
-					   ,REGR
-					   ,REG_DATE
-					   ,MODR
-					   ,MOD_DATE
-					   ,DEL_YN
-				  FROM BOARD
-				  <include refid="selectBoard"></include>
-			   )
-		 WHERE RNUM BETWEEN 1 AND 10
-	  ORDER BY RNUM
+		  FROM BOARD
+		 WHERE DEL_YN != 'N'
+	  ORDER BY BOARD_NO DESC
+		 LIMIT 0, 10
 	</select>
 
 	<select id="countBoardList" parameterType="boardSearch" resultType="int">

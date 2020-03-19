@@ -7,12 +7,12 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<!-- 오라클 접속 -->
-    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
-        <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521/orcl"/>
+	<!-- MySQL dataSource -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://13.209.99.81:3306/dev?useSSL=false&amp;serverTimezone=UTC"/>
         <property name="username" value="user_dev"/>
-        <property name="password" value="1234"/>
+        <property name="password" value="p@ssw0rd"/>
     </bean>
 
     <!-- Mybatis 연동 -->
@@ -24,5 +24,9 @@
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
     </bean>
+
+<!--     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> -->
+<!--         <property name="basePackage" value="com.exp.app" /> -->
+<!--     </bean> -->
 
 </beans>
