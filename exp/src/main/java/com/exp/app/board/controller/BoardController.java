@@ -27,8 +27,8 @@ public class BoardController {
 	BoardService service;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView selectBoardList(HttpSession session, BoardSearch search) {
-		logger.info("selectBoardList in......");
+	public ModelAndView list(HttpSession session, BoardSearch search) {
+		logger.info("list in......");
 		ModelAndView mav = null;
 
 		List<BoardBase> list = service.selectBoardList(search);
@@ -42,8 +42,15 @@ public class BoardController {
 		mav.addObject("list", list);
 		mav.addObject("pageMaker", pageMaker);
 		mav.addObject("search", search);
-
 		return mav;
 	}
 
+	@RequestMapping(value = "/regist", method = RequestMethod.GET)
+	public ModelAndView regist(HttpSession session, BoardSearch search) {
+		logger.info("regist in......");
+		ModelAndView mav = new ModelAndView("/board/regist");
+
+		mav.addObject("search", search);
+		return mav;
+	}
 }

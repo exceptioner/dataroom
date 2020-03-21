@@ -6,9 +6,6 @@
 		<title>게시판 관리</title>
 		<link href="/resources/css/main.css" rel="stylesheet" />
 		<link href="/resources/css/common.css" rel="stylesheet" />
-		<style type="text/css">
-				li {list-style: none; float: left; padding: 6px;}
-			</style>
 	</head>
 	<body class="layer">
 		<h1 align="center">게시판 관리</h1>
@@ -22,7 +19,7 @@
 				<col width="60px"/>
 				<col width="*"/>
 			</colgroup>
-			<thead>
+			<thead class="underline">
 				<tr class="underline">
 					<th class="pb10 tc">번호</th>
 					<th class="pb10 tc">ID</th>
@@ -33,14 +30,19 @@
 				</tr>
 			</thead>
 			<tbody style="padding-top: 10px">
+				<c:if test="${empty list }">
+					<tr>
+						<td class="tc" colspan="6">등록된 게시글이 없습니다.</td>
+					</tr>
+				</c:if>
 				<c:forEach var="data" items="${list }" varStatus="i">
 					<tr>
-						<td class="pt10 tc">${data.boardNo }</td>
-						<td class="pt10 text">${data.regr }</td>
-						<td class="pt10 tc">${data.regDate }</td>
-						<td class="pt10 number">18</td>
-						<td class="pt10 number">0</td>
-						<td class="pt10 text"><a href="">${data.boardNm }</a></td>
+						<td class="tc">${data.boardNo }</td>
+						<td class="text">${data.regr }</td>
+						<td class="tc">${data.regDate }</td>
+						<td class="number">18</td>
+						<td class="number">0</td>
+						<td class="text"><a href="">${data.boardNm }</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -51,7 +53,7 @@
 		</jsp:include>
 
 		<div class="mt10 fr">
-			<a href="">[글작성]</a>
+			<a href="/board/regist">[글작성]</a>
 		</div>
 	</body>
 </html>

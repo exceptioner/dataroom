@@ -4,7 +4,7 @@
     String owner = request.getParameter("owner");
 %>
 <div class="pagingbar" align="center">
-	<table class="mt10 mb10">
+	<table class="mt5 mb5">
 		<tr>
 		    <c:if test="${pageMaker.prev}">
 			    <td class="pr10">
