@@ -11,3 +11,7 @@
 body{background-color: #00007e; font-family: DungGeunMo; color: white; font-size: 12pt;}
 table{border-collapse: collapse;}
 tr.underline{border-bottom: 2px solid white;}
+
+ a:link { color: white; text-decoration: none;}
+ a:visited { color: white; text-decoration: none;}
+ a:hover { color: white; text-decoration: none; font-weight: bolder;}

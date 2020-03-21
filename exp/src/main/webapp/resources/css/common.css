@@ -1,14 +1,33 @@
-.pt10{padding-top:10px;}
-.pb10{padding-bottom:10px;}
+.layer{
+	position:absolute;
+	left:50%;
+	width:1024px;
+	margin:0 0 0 -512px;
+}
+
+.pt10{padding-top: 10px;}
+
+.pb10{padding-bottom: 10px;}
+
+.pr10{padding-right: 10px;}
+
+.mt10{margin-top:10px;}
 
 .mb10{margin-bottom:10px;}
 
-.w30{width: 30px}
-.w100{width: 100px}
+.w30{width: 30px;}
+.w100{width: 100px;}
 
 .tc{text-align: center;}
 .tl{text-align: left;}
 .tr{text-align: right;}
 
+.fl{float: left;}
+.fr{float: right;}
+
 .number{text-align: right; padding-right: 8px;}
 .text{text-align: left; padding-left: 8px;}
+
+.bolder{font-weight: bolder;}
+
+.pagingbar{width: 100%; border-top: 2px solid white; border-bottom: 2px solid white; margin-top: 10px;}

@@ -4,10 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.exp.app.board.dao.BoardDao">
 	<sql id="selectBoard">
-		WHERE DEL_YN != 'N'
+		WHERE DEL_YN != 'Y'
 	</sql>
 
 	<select id="selectBoardList" parameterType="boardSearch" resultType="boardBase">
+	<![CDATA[
 		SELECT BOARD_NO
 			   ,BOARD_NM
 			   ,BOARD_DESC
@@ -18,14 +19,17 @@
 			   ,MOD_DATE
 			   ,DEL_YN
 		  FROM BOARD
-		 WHERE DEL_YN != 'N'
+	]]>
+		<include refid="selectBoard"></include>
 	  ORDER BY BOARD_NO DESC
-		 LIMIT 0, 10
+		 LIMIT #{pageStart}, #{perPageNum}
 	</select>
 
-	<select id="countBoardList" parameterType="boardSearch" resultType="int">
-		SELECT COUNT(*) AS CNT
+	<select id="countBoardList" parameterType="boardSearch" resultType="Integer">
+	<![CDATA[
+		SELECT COUNT(*)
           FROM BOARD
+	]]>
 		<include refid="selectBoard"></include>
 	</select>
 
