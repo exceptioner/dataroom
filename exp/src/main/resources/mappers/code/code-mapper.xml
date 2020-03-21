@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exp.app.code.dao.CodeDao">
+	<sql id="selectCode">
+		WHERE DEL_YN != 'Y'
+	</sql>
+
+	<select id="selectCodeList" parameterType="codeSearch" resultType="codeBase">
+	<![CDATA[
+		SELECT CODE_SEQ
+			   ,CODE_GRP
+			   ,CODE
+			   ,CODE_NM
+			   ,CODE_DESC
+			   ,REGR
+			   ,REG_DATE
+			   ,MODR
+			   ,MOD_DATE
+			   ,DEL_YN
+		  FROM CODE
+	]]>
+		<include refid="selectCode"></include>
+	  ORDER BY CODE_SEQ DESC
+		 LIMIT #{pageStart}, #{perPageNum}
+	</select>
+
+	<select id="countCodeList" parameterType="codeSearch" resultType="Integer">
+	<![CDATA[
+		SELECT COUNT(*)
+          FROM CODE
+	]]>
+		<include refid="selectCode"></include>
+	</select>
+
+</mapper>
